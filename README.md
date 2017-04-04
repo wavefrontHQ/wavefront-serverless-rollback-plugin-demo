@@ -7,7 +7,13 @@ How it works:
 * The plugin uses the `wavefrontRollbackCondition` ts query in `severless.yml` to determine the health of your function
 * If the ts query condition is triggered it will rollback function
 
-### Running
+### Installing and Running
+#### From NPM
+* Switch to your own serverless service project directory
+* Run `npm install -g wavefront-serverless-rollback-plugin` to install plugin
+* Add `wavefront-serverless-rollback-plugin` to plugin list in your `serverless.yml`
+* Run `serverless deploy` to deploy your service with the rollback function
+#### From Cloned Plugin Repo
 Assuming you have cloned plugin to [path/to/wavefront-serverless-rollback-plugin]
 * Switch to cloned directory
 * Install plugin with `npm install [path/to/wavefront-serverless-rollback-plugin]`
