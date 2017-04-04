@@ -21,4 +21,12 @@ Assuming you have cloned plugin to [path/to/wavefront-serverless-rollback-plugin
 * Setup the Wavefront plugin options in `serverless.yml`, including the API key
 * Run `serverless deploy`
 * Test the service using the endpoint reported by serverless e.g. `curl https://931s566921.execute-api.us-east-1.amazonaws.com/dev/process`
-
+#### Setup Wavefront Proxy
+* Install a Wavefront proxy using method described [here](https://community.wavefront.com/docs/DOC-1271)
+* Setup the proxy to be able to collect log data as described [here](https://community.wavefront.com/docs/DOC-1217)
+* Add grok pattern (match this to your actual metric pattern):
+```
+counters:
+   - pattern: 'demoapp.%{GREEDYDATA:metricName} %{NUMBER:status} %{NUMBER:time} source=%{GREEDYDATA:funcName}'
+     metricName: 'demoapp.%{metricName}'
+```
