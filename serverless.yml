@@ -26,9 +26,9 @@ custom:
   wavefrontDebugMode: false
   wavefrontForceDeploy: true
   wavefrontApiKey: "api-key" # Put your Wavefront API key here
-  wavefrontApiInstanceUrl: "http://try.wavefront.com" # Put your Wavefront API Instance URL here
+  wavefrontApiInstanceUrl: "https://try.wavefront.com" # Put your Wavefront API Instance URL here
   wavefrontRollbackAlertTriggerThreshold: 2
-  wavefrontRollbackAlertCondition: 'mavg(5m,mcount(1,ts("demoapp.mymetric", source="error")))/mcount(1,sum(ts("demoapp.mymetric"))) > .1'
+  wavefrontRollbackAlertCondition: 'mavg(5m, sum(ts("demoapp.mymetric.error"))/sum(ts("demoapp.mymetric.*"))) > .1'
   # wavefrontAlertAdditionalTarget:
   #   - 'notify-me@example.com'
  
