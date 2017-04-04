@@ -1,0 +1,34 @@
+#
+# Copyright (c) 2017 Wavefront. All Rights Reserved.
+#
+service: demoapp
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+
+functions:
+  transaction:
+    handler: handler.transaction
+    environment:
+      WAVEFRONT_PROXY_HOST: '0.0.0.0' # Put your proxy address here
+      WAVEFRONT_PROXY_PORT: 2003 # Put your proxy port here, ex: 2003 for Graphite
+    timeout: 60
+    events:
+      - http:
+          path: process
+          method: get
+
+plugins:
+  - wavefront-serverless-rollback-plugin
+
+custom:
+  wavefrontDebugMode: false
+  wavefrontForceDeploy: true
+  wavefrontApiKey: "api-key" # Put your Wavefront API key here
+  wavefrontApiInstanceUrl: "http://try.wavefront.com" # Put your Wavefront API Instance URL here
+  wavefrontRollbackAlertTriggerThreshold: 2
+  wavefrontRollbackAlertCondition: 'mavg(5m,mcount(1,ts("demoapp.mymetric", source="error")))/mcount(1,sum(ts("demoapp.mymetric"))) > .1'
+  # wavefrontAlertAdditionalTarget:
+  #   - 'notify-me@example.com'
+ 
