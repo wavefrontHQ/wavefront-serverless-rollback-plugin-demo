@@ -5,7 +5,8 @@ This is a demo for the Wavefront rollback plugin.
 How it works:
 * This Lambda function will send mock metric data to Wavefront
 * The plugin uses the `wavefrontRollbackCondition` ts query in `severless.yml` to determine the health of your function
-* If the ts query condition is triggered it will rollback function
+* If the alert condition is fulfilled it will trigger rollback the Lambda function
+* After rolling back, the Lambda function will delete the alert and itself
 
 ### Installing and Running
 #### From NPM
