@@ -1,3 +1,7 @@
+> **Warning**
+>
+> VMware has ended active development of this project. this repository will no longer be updated.
+
 # Wavefront Serverless Rollback Plugin Demo
 
 This is a demo for the Wavefront rollback plugin. 
